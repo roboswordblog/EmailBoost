@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Boost - Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    background: #0f172a;
+    color: white;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: #020617;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+/* SIDEBAR BUTTONS */
+.sidebar button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #334155;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.sidebar button:hover {
+    background: #6366f1;
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP BAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.topbar button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.topbar button:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+/* CONTENT */
+.content {
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+/* EMAIL EDITOR */
+.editor {
+    flex: 2;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor input,
+.editor textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: white;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* BIG TEXTAREA */
+.editor textarea {
+    resize: none;
+    width: 700px;
+    height: 250px;
+    margin-bottom: 15px;
+}
+
+/* INPUT INTERACTIONS */
+.editor input:hover,
+.editor textarea:hover {
+    border-color: #475569;
+}
+
+.editor input:focus,
+.editor textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.3);
+}
+
+/* BUTTON GROUP */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* SEND */
+.send-btn {
+    background: #22c55e;
+    color: white;
+}
+
+.send-btn:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+/* AI */
+.ai-btn {
+    background: #6366f1;
+    color: white;
+}
+
+.ai-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(99,102,241,0.4);
+}
+
+/* SIDE PANEL */
+.panel {
+    flex: 1;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.panel h3 {
+    margin-bottom: 15px;
+}
+
+/* QUICK ACTION BUTTONS */
+.suggestion {
+    width: 100%;
+    text-align: left;
+    background: #0f172a;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.suggestion:hover {
+    background: #1e293b;
+}
+
+/* SCROLLBAR */
+textarea::-webkit-scrollbar {
+    width: 6px;
+}
+textarea::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Email Boost</h2>
+    <form action="/dashboard" method="POST">
+        <button type="submit">Dashboard</button>
+    </form>
+    <form action="/pricing" method="POST">
+        <button type="submit">Upgrade</button>
+    </form>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h3>Welcome back 👋</h3>
+
+        <form action="/logout" method="POST">
+            <button>Logout</button>
+        </form>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        {% if cookad %}
+
+        <!-- BLOCKED MESSAGE -->
+        <div style="
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #f87171;
+        ">
+            You cannot send another email.<br>
+            Upgrade for more.
+        </div>
+
+        {% else %}
+
+        <!-- EMAIL EDITOR -->
+        <div class="editor">
+            <form method="POST">
+                <input type="email" name="to" placeholder="Recipient Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+
+                <textarea name="body" placeholder="Write your email here...">{{ new if new else '' }}</textarea>
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        class="btn ai-btn"
+                        formaction="/enhance"
+                        formmethod="POST">
+                        Enhance with AI
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn send-btn"
+                        formaction="/send"
+                        formmethod="POST">
+                        Send Email
+                    </button>
+
+                </div>
+            </form>
+        </div>
+
+        <!-- SIDE PANEL -->
+        <div class="panel">
+            <h3>Quick Actions</h3>
+
+            <button class="suggestion" onclick="clearEmail()">Clear Email</button>
+            <button class="suggestion" onclick="copyEmail()">Copy Email</button>
+            <button class="suggestion" onclick="insertTemplate()">Insert Template</button>
+            <button class="suggestion" onclick="addSignature()">Add Signature</button>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+function getTextarea() {
+    return document.querySelector('textarea[name="body"]');
+}
+
+function clearEmail() {
+    getTextarea().value = "";
+}
+
+function copyEmail() {
+    const text = getTextarea().value;
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
+}
+
+function insertTemplate() {
+    getTextarea().value =
+`Hi,
+
+I hope you're doing well.
+
+I wanted to reach out regarding...
+
+Best regards,`;
+}
+
+function addSignature() {
+    let textarea = getTextarea();
+    textarea.value += "\n\nBest regards,\nYour Name";
+}
+</script>
+
+</body>
+</html>

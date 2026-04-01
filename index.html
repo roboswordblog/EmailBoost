@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Boost</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* FLEX BUTTON GROUP (USED EVERYWHERE) */
+.button-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.button-group form {
+    margin: 0;
+}
+
+/* BUTTON BASE */
+button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid #334155;
+}
+
+.login-btn:hover {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* SIGNUP BUTTON */
+.signup-btn {
+    background: #6366f1;
+    color: white;
+}
+
+.signup-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(99,102,241,0.5);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #cbd5f5;
+    margin-bottom: 40px;
+}
+
+/* CTA BUTTON GROUP */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 16px;
+    width: 280px;
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #94a3b8;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Email Boost</div>
+
+    <div class="button-group">
+        <form action="/login" method="POST">
+            <button class="login-btn">Login</button>
+        </form>
+
+        <form action="/signup" method="POST">
+            <button class="signup-btn">Sign Up</button>
+        </form>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Write better, Send smarter</h1>
+    <p>AI-powered email writing, enhancement, and sending — all in one place.</p>
+
+    <div class="cta-buttons">
+        <div class="button-group">
+            <form action="/signup" method="POST">
+                <button class="signup-btn">Get Started</button>
+            </form>
+
+            <form action="/login" method="POST">
+                <button class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="card">
+        <h3>✍️ Smart Writing</h3>
+        <p>Generate emails instantly using AI tailored to your tone and purpose.</p>
+    </div>
+
+    <div class="card">
+        <h3>⚡ Enhance Instantly</h3>
+        <p>Improve clarity, grammar, and professionalism with one click.</p>
+    </div>
+
+    <div class="card">
+        <h3>📤 Send Seamlessly</h3>
+        <p>Send emails directly from the platform without switching tabs.</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Email Boost. All rights reserved.
+</footer>
+
+</body>
+</html>

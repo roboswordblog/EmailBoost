@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Boost - Pricing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: white;
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 200px;
+    background: #1e293b;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+}
+
+.sidebar h2 {
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    color: #6366f1;
+}
+
+/* Styled dashboard button */
+.sidebar-button {
+    background: #334155;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+}
+
+.sidebar-button:hover {
+    background: #6366f1;
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    padding: 50px 30px;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 1.2rem;
+}
+
+/* PRICING CARDS CONTAINER */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 30px 20px;
+    width: 280px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.card.highlight {
+    border-color: #6366f1; /* highlighted tier */
+    box-shadow: 0 10px 25px rgba(99,102,241,0.5);
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+/* PRICE COLOR */
+.card .price {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #3b82f6; /* bright blue */
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.card ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #334155;
+}
+
+.card button {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #6366f1;
+    color: white;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.card button:hover {
+    background: #4f46e5;
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* RESPONSIVE */
+@media(max-width: 950px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+    }
+    .sidebar-button {
+        flex: 1;
+        margin-bottom: 0;
+    }
+    .main-content {
+        padding: 30px 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Email Boost</h2>
+    <form action="/dashboard" method="post">
+        <button type="submit" class="sidebar-button">Dashboard</button>
+    </form>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<header>
+    <h1>Email Boost Pricing</h1>
+    <p>Choose a plan that fits your needs. Upgrade anytime!</p>
+</header>
+
+<div class="pricing-container">
+
+    <div class="card {% if tier == 'Free' %}highlight{% endif %}">
+        <h2>Free</h2>
+        <p class="price">$0</p>
+        <ul>
+            <li>Basic Email Writing</li>
+            <li>AI improvement basic</li>
+            <li>Up to 5 emails/day</li>
+        </ul>
+            <button type="submit">Select Free</button>
+    </div>
+
+    <div class="card {% if tier == 'Pro' %}highlight{% endif %}">
+        <h2>Pro</h2>
+        <p class="price">$2.99/mo</p>
+        <ul>
+            <li>20 Emails per day</li>
+            <li>Advanced AI Suggestions</li>
+        </ul>
+        <form action="/subscribe" method="POST">
+            <input type="hidden" name="plan" value="Pro">
+            <button type="submit">Select Pro</button>
+        </form>
+    </div>
+
+    <div class="card {% if tier == 'Business' %}highlight{% endif %}">
+        <h2>Business</h2>
+        <p class="price">$9.99/mo</p>
+        <ul>
+            <li>30 Emails per day</li>
+            <li>Priority AI Support</li>
+            <li>Advanced AI Suggestions</li>
+        </ul>
+        <form action="/subscribe" method="POST">
+            <input type="hidden" name="plan" value="Business">
+            <button type="submit">Select Business</button>
+        </form>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
